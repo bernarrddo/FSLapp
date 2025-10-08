@@ -1,0 +1,101 @@
+=====================================================
+📱 FSLapp – Setup Instructions
+=====================================================
+
+This guide helps you run the FSL Learning App (Expo SDK 54)
+on your local device or with a deployed API.
+
+-----------------------------------------------------
+1️⃣ Requirements
+-----------------------------------------------------
+- Node.js (v18 or later)
+- npm (comes with Node.js)
+- Expo CLI
+- Git (optional)
+- Python backend (optional for testing)
+- A smartphone or emulator running Expo Go
+
+-----------------------------------------------------
+2️⃣ Installation Steps
+-----------------------------------------------------
+1. Clone this repository:
+   git clone https://github.com/<your-username>/FSLapp.git
+   cd FSLapp
+
+2. Install dependencies:
+   npm install --legacy-peer-deps
+
+3. Start the Expo development server:
+   npx expo start -c
+
+4. Scan the QR code with the Expo Go app on your phone
+   OR press 'a' to open the Android emulator.
+
+-----------------------------------------------------
+3️⃣ API Configuration
+-----------------------------------------------------
+Your app connects to a backend API for FSL recognition.
+
+➡️ The API URL is defined in:
+   mobile/config.js
+
+Example config.js:
+-----------------------------------------------------
+const LOCAL_API = "http://192.168.0.105:5000";
+const PROD_API = "https://fsl-api.onrender.com";
+export const API_URL = __DEV__ ? LOCAL_API : PROD_API;
+-----------------------------------------------------
+
+To use your own backend:
+- Run your backend on your computer (port 5000)
+- Run 'ipconfig' and find your Wi-Fi IPv4 address
+- Replace LOCAL_API with: http://<YOUR-IP>:5000
+- Save the file and restart Expo (npx expo start -c)
+
+-----------------------------------------------------
+4️⃣ Sharing the App (so others can use your API)
+-----------------------------------------------------
+Option 1 (Temporary, Easy):
+   - Install ngrok (https://ngrok.com/download)
+   - Run: ngrok http 5000
+   - Copy the HTTPS link (e.g., https://abcd1234.ngrok-free.app)
+   - Replace PROD_API with that URL in mobile/config.js
+   - Now anyone can use your API over the internet
+
+Option 2 (Permanent, Recommended):
+   - Deploy your backend to:
+       https://render.com (Flask/Node)
+       https://railway.app
+   - Update PROD_API with your live API URL.
+
+-----------------------------------------------------
+5️⃣ Troubleshooting
+-----------------------------------------------------
+❌ “Cannot find asset …”
+  → Check file paths (e.g. ../../assets/icon.png)
+❌ “Cannot connect to API”
+  → Make sure your server is running and API_URL is correct
+❌ “Camera not working”
+  → Check Android permissions or use Expo Go
+❌ “npm ERESOLVE errors”
+  → Try: npm install --legacy-peer-deps
+
+-----------------------------------------------------
+✅ After setup
+-----------------------------------------------------
+- App starts from: App.js
+- Screens are in: /mobile/screens/
+- Assets are in: /assets/
+- Videos in: /assets/videos/
+- Config file: /mobile/config.js
+
+-----------------------------------------------------
+✨ Notes
+-----------------------------------------------------
+This app is built using:
+- Expo SDK 54
+- React Navigation 7.x
+- Expo Video (replaces expo-av)
+- Expo Camera (for gesture capture)
+- Works with local or hosted backends
+=====================================================
