@@ -1,142 +1,110 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      {/* App logo or hero image */}
-      <Image
-        source={require("../../assets/icon.png")}
-        style={styles.logo}
-        resizeMode="contain"
-      />
+    <ImageBackground
+      source={require("../../assets/bg.jpg")}
+      style={styles.background}
+      resizeMode="cover"
+    >
+      <View style={styles.overlay}>
+        {/* Title and Subtitle */}
+        <Text style={styles.title}>🤟 Welcome to FSL Learning</Text>
+        <Text style={styles.subtitle}>
+          Learn and practice Filipino Sign Language in a fun and interactive way.
+        </Text>
 
-      {/* Title & Subtitle */}
-      <Text style={styles.title}>🧏‍♀️ FSL Learning App</Text>
-      <Text style={styles.subtitle}>
-        Learn, practice, and master basic Filipino Sign Language gestures with
-        your camera.
-      </Text>
+        {/* Main Buttons */}
+        <View style={styles.buttonGroup}>
+          <TouchableOpacity
+            style={[styles.mainButton, { backgroundColor: "#43AA8B" }]}
+            onPress={() => navigation.navigate("Learning")}
+            activeOpacity={0.85}
+          >
+            <Ionicons name="school-outline" size={28} color="#fff" />
+            <Text style={styles.buttonText}>Start Learning</Text>
+          </TouchableOpacity>
 
-      {/* Main Buttons */}
-      <View style={styles.buttonGroup}>
-        <TouchableOpacity
-          style={styles.buttonPrimary}
-          onPress={() => navigation.navigate("Tutor")}
-        >
-          <Ionicons name="school-outline" size={22} color="#fff" />
-          <Text style={styles.buttonText}>Start Learning</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.buttonSecondary}
-          onPress={() => navigation.navigate("Activity")}
-        >
-          <Ionicons name="videocam-outline" size={22} color="#2a9d8f" />
-          <Text style={styles.buttonTextSecondary}>Practice Signs</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.buttonTertiary}
-          onPress={() => navigation.navigate("About")}
-        >
-          <Ionicons name="information-circle-outline" size={22} color="#555" />
-          <Text style={styles.buttonTextTertiary}>About</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.mainButton, { backgroundColor: "#264653" }]}
+            onPress={() => navigation.navigate("About")}
+            activeOpacity={0.85}
+          >
+            <Ionicons name="information-circle-outline" size={28} color="#fff" />
+            <Text style={styles.buttonText}>About App</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    backgroundColor: "#f9fafb",
+    width: "100%",
+    height: "100%",
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.45)",
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
-  },
-  logo: {
-    width: 160,
-    height: 160,
-    marginBottom: 20,
+    paddingVertical: 50,
   },
   title: {
-    fontSize: 26,
-    fontWeight: "800",
-    color: "#2a9d8f",
+    fontSize: 34,
+    fontWeight: "900",
+    color: "#fff",
     textAlign: "center",
+    marginBottom: 10,
+    textShadowColor: "rgba(0,0,0,0.4)",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5,
   },
   subtitle: {
+    fontSize: 18,
+    color: "#f1faee",
     textAlign: "center",
-    color: "#555",
-    fontSize: 15,
-    marginTop: 10,
-    marginBottom: 40,
-    paddingHorizontal: 15,
+    marginBottom: 50,
+    lineHeight: 24,
+    fontWeight: "500",
+    paddingHorizontal: 20,
+    textShadowColor: "rgba(0,0,0,0.25)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3,
   },
   buttonGroup: {
+    width: "85%",
+    alignItems: "center",
+    gap: 20,
+  },
+  mainButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     width: "100%",
-    alignItems: "center",
-  },
-  buttonPrimary: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#2a9d8f",
-    width: "80%",
-    paddingVertical: 14,
-    borderRadius: 12,
-    marginBottom: 15,
-    gap: 8,
+    borderRadius: 16,
+    paddingVertical: 16,
+    gap: 12,
+    elevation: 6,
     shadowColor: "#000",
-    shadowOpacity: 0.15,
+    shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  buttonSecondary: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#fff",
-    borderWidth: 2,
-    borderColor: "#2a9d8f",
-    width: "80%",
-    paddingVertical: 14,
-    borderRadius: 12,
-    marginBottom: 15,
-    gap: 8,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  buttonTertiary: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#f1f1f1",
-    width: "80%",
-    paddingVertical: 12,
-    borderRadius: 12,
-    gap: 8,
+    shadowRadius: 6,
   },
   buttonText: {
     color: "#fff",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  buttonTextSecondary: {
-    color: "#2a9d8f",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  buttonTextTertiary: {
-    color: "#333",
-    fontWeight: "600",
-    fontSize: 15,
+    fontSize: 18,
+    fontWeight: "800",
   },
 });
